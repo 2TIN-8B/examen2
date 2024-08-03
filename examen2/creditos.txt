@@ -1,0 +1,30 @@
+use creditos;
+
+create table cliente(
+    dni varchar(20) primary key,
+    nombre varchar(50),
+    apellido varchar(50),
+    telefono varchar(20)
+);
+
+create table prestamos(
+    codigoPrestamo int AUTO_INCREMENT PRIMARY key,
+    fechaApertura date,
+    monto decimal(14,2),
+    cuota decimal(14,2),
+    plazo int,
+    interes decimal(8,2),
+    dni varchar(20),
+    foreign key(dni) REFERENCES cliente(dni)
+ );
+ 
+ create table cuotas(
+     codigoCuota int AUTO_INCREMENT PRIMARY KEY,
+     mes int,
+     interes decimal(12,2),
+     capital decimal(12,2),
+     saldo decimal(12,2),
+     codigoPrestamo int,
+     FOREIGN KEY(codigoPrestamo) REFERENCES prestamos(codigoPrestamo)
+  );
+    
